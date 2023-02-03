@@ -14,7 +14,7 @@
         localStorage.removeItem('staff');
         $('#account').empty()
         $('#account').append('<p id = "account"><a link href = "login.html">Login</a></p>')
-
+        h
         hideAdd(document.getElementById('add'),"hidden")
         hideAdd(document.getElementById('addCustomer'),"hidden")
         window.location.assign('index.html')
@@ -111,8 +111,7 @@
                   409: (data) => {
                       console.log(`send`)
                       alert("email already exists");
-                      let check = data.to_be_deleted 
-                      console.log(check)
+                      
                   },
                   400 : () => {
 
@@ -153,9 +152,10 @@
                 <a link href = "addCustomer.html" id = "addCustomer">
                   add customer
                 </a>
+            
             </div>
             <div>
-              <p id = "account"><a link href = "login.html">Login</a></p>
+              <button id = "account" class = "hover:underline bg-black text-white p-3 rounded-xl"><a link href = "login.html">Login</a></button>
   
             </div>
         </div>
@@ -163,10 +163,10 @@
     </div>
 
 
-    <div class="max-w-md m-10 ">
-        <form class="bg-white shadow-md rounded  px-8 pt-6 pb-8 mb-4">
+    <div class=" m-10 flex flex-row justify-center">
+        <form class="bg-white shadow-md rounded sm:w-screen lg:w-1/2  px-8 pt-6 pb-8 mb-4 flex flex-col">
 
-            <div class = 'flex '>
+            <div class = ''>
                 <div class="mr-4">
                     <label class="block text-gray-700 text-sm font-bold mb-2" for="firstName">
                       First Name:
