@@ -8,27 +8,19 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script src = "https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
     <script>
-        function logout(){
-            localStorage.removeItem('token');
-            localStorage.removeItem('staff');
-            $('#account').empty()
-            $('#account').append('<p id = "account"><a link href = "login.html">Login</a></p>');
-            window.location.assign('http://localhost:3001/index.html')
-        }
 
-        function chooseDisplay(){
+     function logout(){
+        localStorage.removeItem('staff_token');
+        localStorage.removeItem('staff');
+        window.location.assign('index.html')
 
-            let currentDisplay = "";
-            currentDisplay = option.val()
+      }
 
-
-
-        }
         
         $(document).ready(()=>{
 
 
-            let token = localStorage.getItem('token')
+            let token = localStorage.getItem('staff_token')
             if(token == null){
                 // checks for token, if token does not exist, redirects user to login page
                 window.location.assign('http://localhost:3001/login.html')

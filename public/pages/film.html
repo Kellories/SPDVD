@@ -10,10 +10,12 @@
     <script>
         $(document).ready(()=>{
             // retrieve actors
-            getComments()
+            
           let filmDetail = localStorage.getItem('filmDetails');
           filmDetail = JSON.parse(filmDetail)
-          console.log(filmDetail)
+          console.log("here" + JSON.stringify(filmDetail))
+          getComments()
+    
             $.ajax({
                 url:"http://localhost:3000/getActors",
                 type: 'POST',
@@ -37,7 +39,10 @@
             function getComments(){
                 $.ajax({
                     url:"http://localhost:3000/film/getComments",
-                    type: 'GET',
+                    type: 'POST',
+                    data: JSON.stringify({filmId:filmDetail.film_id}),
+                    contentType: 'application/json; charset=utf-8',
+                    dataType:'json',
                     success:(data)=>{
                         console.log(data)
                         $("#displayComment").empty()
@@ -86,6 +91,31 @@
 
             } )
 
+            let customer = localStorage.getItem('customer')
+            // saving Film in custoneer table
+            $("#saveFilm").click(()=>{
+                const saveBody = {
+                    filmid:filmDetail.film_id,
+                    customerid:customer
+                }
+
+                $.ajax({
+                    url: "http://localhost:3000/saveFilm",
+                    type:'POST',
+                    data:JSON.stringify(saveBody),
+                    contentType:"application/json; charset=utf-8",
+                    dataType:"json",
+                    success:()=>{
+                        alert("bookmarked")
+                    },
+                    statusCode:{
+                        400:()=>{
+                            alert("already bookmarked!")
+                        }
+                    }
+                })
+            })
+
 
         })
 
@@ -115,6 +145,10 @@
         <div class = " sm:text-left  lg:w-1/2 flex justify-center  items-center text-black font-black" >
             <ul id = "film" class = "sm:text-left text-center"></ul>
         </div>
+    </div>
+    <div class = "flex flex-row justify-center">
+
+        <button class = "bg-red-500 text-white font-bold p-2 rounded text-left" id = "saveFilm"> Bookmark </button>
     </div>
 
        <!-- COMMENTS CONTAINER -->

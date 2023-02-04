@@ -10,32 +10,22 @@
     <script>
 
       function logout(){
-        localStorage.removeItem('token');
+        localStorage.removeItem('staff_token');
         localStorage.removeItem('staff');
-        $('#account').empty()
-        $('#account').append('<p id = "account"><a link href = "login.html">Login</a></p>')
-        h
-        hideAdd(document.getElementById('add'),"hidden")
-        hideAdd(document.getElementById('addCustomer'),"hidden")
         window.location.assign('index.html')
 
-      }
-      function hideAdd(element,visibility){
-        element.style.visibility = visibility
-        
       }
 
         $(document).ready(()=>{
 
-            let token = localStorage.getItem('token');
+            let token = localStorage.getItem('staff_token');
 
             if(token){
             $('#account').empty() 
             $('#account').append('<p><a onclick = "logout()">Log Out</a><p>')
             
             }else{
-            hideAdd(document.getElementById('add'),'hidden')
-            hideAdd(document.getElementById('addCustomer'),"hidden")
+              window.location.assign('login.html')
             }
 
             // Get Store IDs
